@@ -1,15 +1,19 @@
 ---
-title: "Offensive Security Certified Professional Exam Report"
-author: ["student@youremailaddress.com", "OSID: XXXXXX"]
-date: "2023-09-16"
-subject: "Markdown"
-keywords: [Markdown, Example]
-subtitle: "OSCP Exam Report"
-lang: "en"
+title: Offensive Security Certified Professional Exam Report
+author:
+  - student@youremailaddress.com
+  - "OSID: XXXXXX"
+date: 2023-09-16
+subject: Markdown
+keywords:
+  - Markdown
+  - Example
+subtitle: OSCP Exam Report
+lang: en
 titlepage: true
-titlepage-color: "1E90FF"
-titlepage-text-color: "FFFAFA"
-titlepage-rule-color: "FFFAFA"
+titlepage-color: 1E90FF
+titlepage-text-color: FFFAFA
+titlepage-rule-color: FFFAFA
 titlepage-rule-height: 2
 book: true
 classoption: oneside
@@ -197,8 +201,6 @@ Server IP Address | Ports Open
 **Local.txt Proof Screenshot**
 
 **Local.txt Contents**
-
-!["Rick is rolling!"](img/RickRoll.png "Rick is rolling!")
 
 ### Privilege Escalation
 

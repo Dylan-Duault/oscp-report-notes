@@ -1,4 +1,4 @@
-# Port scan
+# Port scanning
 
 ## masscan
 

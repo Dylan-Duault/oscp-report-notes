@@ -84,7 +84,7 @@ MATCH p = (c:Computer)-[:HasSession]->(m:User) RETURN p
 # Attacking
 
 Reference: [Wikipedia](https://en.wikipedia.org/wiki/Kerberos_%28protocol%29)
-![](img/Kerberos_protocol.png)
+![](Kerberos_protocol.png)
 
 ## Password Attacks
 
