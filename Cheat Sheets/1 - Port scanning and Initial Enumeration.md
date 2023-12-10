@@ -1,44 +1,29 @@
 # Port scanning
 
-## masscan
-
-Reveal open ports:
-```
-sudo masscan -p1-65535,U:1-65535 $rhost --rate=1000 -e tun0
-```
-
-Save it into a file (tcpports.txt) and them use this script to take out newline and add a comma at the final of each sentence:
-```
-awk '{print $4}'  masscan.txt | grep "tcp" | cut -d "/" -f1 | sort -n  | sed '$!s/$/,/' | tr -d '\n' > tcpports.txt
-```
-NOTE: Check also for UDP ports!
-
-```
-awk '{print $4}'  masscan.txt | grep "udp" | cut -d "/" -f1 | sort -n  | sed '$!s/$/,/' | tr -d '\n' > udpports.txt
-```
-
-Then, use these ports with nmap `-sC` option
 ## nmap
 
+A script is available in `assets/scripts/nmap/nmap_scan.sh` to run the following lines automatically.
+
+These commands will run a optimized TCP scan on a given target.
+This is NOT scanning for UDP ports.
+
+```sh
+read -p "Enter target IP address: " rhost &&
+nmap -p- -T4 $rhost -oG open-ports.txt &&
+nmapPorts=$(grep -oP '\d+/open' open-ports.txt | cut -d '/' -f 1 | tr '\n' ',' | sed 's/,$//') &&
+nmap -p$nmapPorts -sC -sV $rhost &&
+rm open-ports.txt
 ```
-nmap -p`cat tcpports.txt` -sC -sV -A -T4 $rhost
-```
+
 # Enumeration
 
 ## TCP
 
-### ftp
+### FTP
 
-List ftp scripts to use with nmap:
-```
-locate *.nse | grep ftp
-```
+[Hacktricks](https://book.hacktricks.xyz/network-services-pentesting/pentesting-ftp)
 
-```
-find / -type f -name ftp* 2>/dev/null | grep scripts
-```
-
-Nmap command only ftp port and with default scrips for ftp
+Nmap command only ftp port and with default scripts for ftp
 ```
 nmap -p21 -sC -A -T4 -sV $rhost
 ```
@@ -81,7 +66,8 @@ get file
 ```
 
 Download all files from ftp:
-```
+```bash
+wget -m ftp://anonymous:anonymous@10.10.10.98 
 wget -m --no-passive ftp://anonymous:anonymous@10.10.10.98
 ```
 
